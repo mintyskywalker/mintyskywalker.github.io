@@ -1,149 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Air Station Alpha</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #0d1117;
-      color: #e6edf3;
-      font-family: Arial, sans-serif;
+<title>ALPHA Environmental Monitoring Network</title>
+
+<style>
+:root {
+    --bg: #080d12;
+    --panel: #111820;
+    --panel2: #151f29;
+    --border: #263543;
+    --text: #e8f0f5;
+    --muted: #82919c;
+    --green: #48d56b;
+    --blue: #55b7ff;
+    --yellow: #ffd166;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top, #14202a 0%, #080d12 45%);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    text-align: center;
+    padding: 42px 20px 32px;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 12px;
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 28px 18px 60px;
+}
+
+.network-status {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.online {
+    color: var(--green);
+    font-weight: bold;
+}
+
+.offline {
+    color: #ff6961;
+}
+
+.section {
+    margin-bottom: 42px;
+}
+
+.section-title {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.station-name {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 14px;
+}
+
+.card {
+    background: linear-gradient(145deg, var(--panel2), var(--panel));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.value {
+    font-size: 33px;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.label {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1.4px;
+}
+
+.weather .value {
+    color: var(--blue);
+}
+
+.air .value {
+    color: var(--yellow);
+}
+
+.status-card .value {
+    color: var(--green);
+}
+
+.graph-panel {
+    margin-top: 16px;
+    height: 220px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.graph-title {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.graph-placeholder {
+    height: 160px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    color: #53616b;
+}
+
+.system {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.system-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #202c35;
+    padding: 10px 0;
+}
+
+.system-row:last-child {
+    border-bottom: none;
+}
+
+.system-key {
+    color: var(--muted);
+}
+
+footer {
+    text-align: center;
+    color: #596873;
+    font-size: 12px;
+    padding-top: 35px;
+}
+
+@media(max-width:600px) {
+    .logo {
+        font-size: 38px;
+        letter-spacing: 7px;
     }
 
-    header {
-      text-align: center;
-      padding: 30px 20px;
-      background: #161b22;
-      border-bottom: 2px solid #2ea043;
-    }
-
-    h1 {
-      margin: 0;
-      letter-spacing: 3px;
-    }
-
-    .subtitle {
-      color: #8b949e;
-      margin-top: 8px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .status {
-      color: #3fb950;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 10px;
-      padding: 24px;
-      text-align: center;
+    .section-title {
+        align-items: start;
+        flex-direction: column;
     }
 
     .value {
-      font-size: 34px;
-      font-weight: bold;
-      margin-bottom: 8px;
+        font-size: 30px;
     }
-
-    .label {
-      color: #8b949e;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    .panel {
-      margin-top: 30px;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 10px;
-      padding: 24px;
-    }
-
-    footer {
-      text-align: center;
-      color: #6e7681;
-      padding: 30px;
-      font-size: 13px;
-    }
-  </style>
+}
+</style>
 </head>
+
 
 <body>
 
 <header>
-  <h1>AIR STATION ALPHA</h1>
-  <div class="subtitle">Independent Environmental Monitoring Station</div>
+    <div class="logo">ALPHA</div>
+    <div class="subtitle">
+        ENVIRONMENTAL MONITORING NETWORK
+    </div>
 </header>
+
 
 <div class="container">
 
-  <div class="status">● STATION ONLINE</div>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="value">--.- °F</div>
-      <div class="label">TEMPERATURE</div>
+    <div class="network-status">
+        <span id="wsaStatus" class="online">● WSA ONLINE</span>
+        <span id="asaStatus" class="online">● ASA ONLINE</span>
     </div>
 
-    <div class="card">
-      <div class="value">--.- %</div>
-      <div class="label">HUMIDITY</div>
-    </div>
 
-    <div class="card">
-      <div class="value">---</div>
-      <div class="label">AIR QUALITY</div>
-    </div>
+    <!-- WEATHER STATION ALPHA -->
 
-    <div class="card">
-      <div class="value">--- ppm</div>
-      <div class="label">eCO₂</div>
-    </div>
+    <section class="section">
 
-    <div class="card">
-      <div class="value">--- ppb</div>
-      <div class="label">TVOC</div>
-    </div>
+        <div class="section-title">
+            <h2>WEATHER STATION ALPHA</h2>
+            <div class="station-name">WSA</div>
+        </div>
 
-    <div class="card">
-      <div class="value">---</div>
-      <div class="label">MQ-2 RAW</div>
-    </div>
+        <div class="grid weather">
 
-  </div>
+            <div class="card">
+                <div class="value" id="wsaTemp">--.- °F</div>
+                <div class="label">TEMPERATURE</div>
+            </div>
 
-  <div class="panel">
-    <h2>About the Station</h2>
-    <p>
-      Air Station Alpha monitors local environmental conditions including
-      temperature, humidity, air quality, volatile organic compounds,
-      estimated carbon dioxide and combustible gas/smoke levels.
-    </p>
-  </div>
+            <div class="card">
+                <div class="value" id="wsaHumidity">--.- %</div>
+                <div class="label">HUMIDITY</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="wsaPressure">---- hPa</div>
+                <div class="label">BAROMETRIC PRESSURE</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="wsaWind">--.- mph</div>
+                <div class="label">WIND SPEED</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="wsaDirection">---</div>
+                <div class="label">WIND DIRECTION</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="wsaRain">--.-- in</div>
+                <div class="label">RAINFALL</div>
+            </div>
+
+        </div>
+
+
+        <div class="graph-panel">
+
+            <div class="graph-title">
+                WEATHER HISTORY
+            </div>
+
+            <div class="graph-placeholder">
+                Historical graph will appear here
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- AIR STATION ALPHA -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>AIR STATION ALPHA</h2>
+            <div class="station-name">ASA</div>
+        </div>
+
+
+        <div class="grid air">
+
+            <div class="card">
+                <div class="value" id="asaTemp">--.- °F</div>
+                <div class="label">TEMPERATURE</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="asaHumidity">--.- %</div>
+                <div class="label">HUMIDITY</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="asaAQI">---</div>
+                <div class="label">AIR QUALITY INDEX</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="asaCO2">--- ppm</div>
+                <div class="label">eCO₂</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="asaTVOC">--- ppb</div>
+                <div class="label">TVOC</div>
+            </div>
+
+            <div class="card">
+                <div class="value" id="asaMQ2">---</div>
+                <div class="label">MQ-2 RAW</div>
+            </div>
+
+            <div class="card status-card">
+                <div class="value" id="asaSmoke">NORMAL</div>
+                <div class="label">SMOKE / GAS STATUS</div>
+            </div>
+
+        </div>
+
+
+        <div class="graph-panel">
+
+            <div class="graph-title">
+                AIR QUALITY HISTORY
+            </div>
+
+            <div class="graph-placeholder">
+                AQI / TVOC / smoke history will appear here
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SYSTEM -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2>NETWORK STATUS</h2>
+        </div>
+
+
+        <div class="system">
+
+            <div class="system-row">
+                <span class="system-key">Weather Station Alpha</span>
+                <span id="wsaNetwork">ONLINE</span>
+            </div>
+
+            <div class="system-row">
+                <span class="system-key">Air Station Alpha</span>
+                <span id="asaNetwork">ONLINE</span>
+            </div>
+
+            <div class="system-row">
+                <span class="system-key">WSA Last Packet</span>
+                <span id="wsaLast">Waiting for feed</span>
+            </div>
+
+            <div class="system-row">
+                <span class="system-key">ASA Last Packet</span>
+                <span id="asaLast">Waiting for feed</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        ALPHA Environmental Monitoring Network
+        <br><br>
+        Weather Station Alpha • Air Station Alpha
+
+    </footer>
 
 </div>
 
-<footer>
-  Air Station Alpha
-</footer>
+
+<script>
+
+/*
+=========================================================
+ALPHA DATA SYSTEM
+=========================================================
+
+Later we will make the Pi publish:
+
+data/wsa.json
+data/asa.json
+
+GitHub Pages will read those files and automatically
+update the dashboard.
+
+Until then the page displays placeholder readings.
+
+=========================================================
+*/
+
+
+async function loadASA() {
+
+    try {
+
+        const response = await fetch(
+            "data/asa.json?cache=" + Date.now()
+        );
+
+        if (!response.ok) {
+            throw new Error("ASA data unavailable");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("asaTemp").textContent =
+            data.temp_f + " °F";
+
+        document.getElementById("asaHumidity").textContent =
+            data.humidity + " %";
+
+        document.getElementById("asaAQI").textContent =
+            data.aqi;
+
+        document.getElementById("asaCO2").textContent =
+            data.eco2 + " ppm";
+
+        document.getElementById("asaTVOC").textContent =
+            data.tvoc + " ppb";
+
+        document.getElementById("asaMQ2").textContent =
+            data.mq_raw;
+
+        document.getElementById("asaSmoke").textContent =
+            data.smoke;
+
+        document.getElementById("asaLast").textContent =
+            data.timestamp;
+
+        document.getElementById("asaStatus").className =
+            "online";
+
+        document.getElementById("asaStatus").textContent =
+            "● ASA ONLINE";
+
+        document.getElementById("asaNetwork").textContent =
+            "ONLINE";
+
+    }
+
+    catch(error) {
+
+        document.getElementById("asaStatus").className =
+            "offline";
+
+        document.getElementById("asaStatus").textContent =
+            "● ASA DATA OFFLINE";
+
+        document.getElementById("asaNetwork").textContent =
+            "NO PUBLIC DATA FEED";
+
+    }
+
+}
+
+
+
+async function loadWSA() {
+
+    try {
+
+        const response = await fetch(
+            "data/wsa.json?cache=" + Date.now()
+        );
+
+        if (!response.ok) {
+            throw new Error("WSA data unavailable");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("wsaTemp").textContent =
+            data.temp_f + " °F";
+
+        document.getElementById("wsaHumidity").textContent =
+            data.humidity + " %";
+
+        document.getElementById("wsaPressure").textContent =
+            data.pressure_hpa + " hPa";
+
+        document.getElementById("wsaWind").textContent =
+            data.wind_mph + " mph";
+
+        document.getElementById("wsaDirection").textContent =
+            data.wind_direction;
+
+        document.getElementById("wsaRain").textContent =
+            data.rain_inches + " in";
+
+        document.getElementById("wsaLast").textContent =
+            data.timestamp;
+
+        document.getElementById("wsaStatus").className =
+            "online";
+
+        document.getElementById("wsaStatus").textContent =
+            "● WSA ONLINE";
+
+        document.getElementById("wsaNetwork").textContent =
+            "ONLINE";
+
+    }
+
+    catch(error) {
+
+        document.getElementById("wsaStatus").className =
+            "offline";
+
+        document.getElementById("wsaStatus").textContent =
+            "● WSA DATA OFFLINE";
+
+        document.getElementById("wsaNetwork").textContent =
+            "NO PUBLIC DATA FEED";
+
+    }
+
+}
+
+
+/* Initial load */
+
+loadWSA();
+loadASA();
+
+
+/* Refresh every 30 seconds */
+
+setInterval(loadWSA, 30000);
+setInterval(loadASA, 30000);
+
+</script>
 
 </body>
 </html>
