@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Air Station Alpha</title>
+
+    <style>
+        body {
+            background: #101820;
+            color: #eeeeee;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background: #17232d;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 3px solid #4caf50;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            color: #aaaaaa;
+        }
+
+        .station {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .status {
+            color: #64dd67;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .readings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .reading {
+            background: #17232d;
+            border: 1px solid #344955;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .value {
+            font-size: 34px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            color: #9aa7b0;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .info {
+            margin-top: 40px;
+            background: #17232d;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #77838b;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>AIR STATION ALPHA</h1>
+    <p>Independent Environmental Monitoring Station</p>
+</header>
+
+<div class="station">
+
+    <div class="status">
+        ● STATION ONLINE
+    </div>
+
+    <div class="readings">
+
+        <div class="reading">
+            <div class="value">--.- °F</div>
+            <div class="label">Temperature</div>
+        </div>
+
+        <div class="reading">
+            <div class="value">--.- %</div>
+            <div class="label">Humidity</div>
+        </div>
+
+        <div class="reading">
+            <div class="value">---</div>
+            <div class="label">Air Quality Index</div>
+        </div>
+
+        <div class="reading">
+            <div class="value">--- ppm</div>
+            <div class="label">eCO₂</div>
+        </div>
+
+        <div class="reading">
+            <div class="value">--- ppb</div>
+            <div class="label">TVOC</div>
+        </div>
+
+        <div class="reading">
+            <div class="value">---</div>
+            <div class="label">MQ-2 Raw</div>
+        </div>
+
+    </div>
+
+    <div class="info">
+        <h2>Air Station Alpha</h2>
+
+        <p>
+            Air Station Alpha is an independent environmental monitoring
+            project measuring local atmospheric conditions and air quality.
+        </p>
+
+        <p>
+            The station records temperature, relative humidity, volatile
+            organic compounds, estimated CO₂ and combustible gas/smoke
+            sensor data.
+        </p>
+    </div>
+
+    <footer>
+        Air Station Alpha • Environmental Data Project
+    </footer>
+
+</div>
+
+</body>
+</html>
