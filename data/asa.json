@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-16 22:05:02",
+  "timestamp": "2026-08-16 22:10:02",
   "temp_f": 73.1,
-  "humidity": 31.9,
+  "humidity": 32.0,
   "aqi": 2.0,
-  "eco2": 593.0,
-  "tvoc": 127.0,
+  "eco2": 583.0,
+  "tvoc": 121.0,
   "mq_raw": 27.0,
   "smoke": "NORMAL"
 }
