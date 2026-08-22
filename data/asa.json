@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-08-21 23:35:02",
-  "temp_f": 70.7,
-  "humidity": 33.4,
-  "aqi": 3.0,
-  "eco2": 724.0,
-  "tvoc": 225.0,
-  "mq_raw": 31.0,
+  "timestamp": "2026-08-21 23:40:02",
+  "temp_f": 70.6,
+  "humidity": 31.9,
+  "aqi": 2.0,
+  "eco2": 695.0,
+  "tvoc": 201.0,
+  "mq_raw": 30.0,
   "smoke": "NORMAL"
 }
