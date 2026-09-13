@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-13 01:00:04",
-  "temp_f": 56.22,
-  "humidity": 77.8,
-  "light": 52.0,
+  "timestamp": "2026-09-13 01:05:05",
+  "temp_f": 55.86,
+  "humidity": 78.1,
+  "light": 51.0,
   "state": "DARK",
   "rain": "No rain",
   "rain_pct": 0.0
