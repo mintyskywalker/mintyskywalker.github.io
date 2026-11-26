@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-11-26 06:35:01",
-  "temp_f": null,
-  "humidity": null,
-  "light": null,
-  "state": "not found",
-  "rain": "not found",
-  "rain_pct": null
+  "timestamp": "2026-11-26 06:40:02",
+  "temp_f": 51.9,
+  "humidity": 86.2,
+  "light": 197.0,
+  "state": "DARK",
+  "rain": "Rain detected",
+  "rain_pct": 100.0
 }
